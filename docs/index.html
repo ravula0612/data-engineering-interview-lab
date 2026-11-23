@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Engineering Interview Lab | Free Practice</title>
+  <meta name="description" content="Free data engineering interview practice. Work through SQL, Python, Spark, Databricks, streaming and system design questions, or take a timed mock interview.">
+  <meta property="og:title" content="Data Engineering Interview Lab">
+  <meta property="og:description" content="Original data engineering interview questions, worked solutions, timed mocks, and a four-week study plan. Free for everyone.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ravula0612.github.io/data-engineering-interview-lab/">
+  <link rel="stylesheet" href="style.css">
+  <script src="questions.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="shell site-header">
+    <a class="wordmark" href="./"><span class="brand-mark" aria-hidden="true">▦</span> Interview Lab</a>
+    <nav aria-label="Main navigation"><a href="#practice">Practice</a><a href="#mocks">Mocks</a><a href="#roadmap">Roadmap</a></nav>
+    <button class="button quiet share" id="share" type="button">Share lab</button>
+  </header>
+  <main class="shell" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div>
+        <p class="eyebrow"><span aria-hidden="true"></span> Free for everyone</p>
+        <h1 id="title">Data engineering<br>interview <em>practice.</em></h1>
+        <p class="intro">Solve realistic SQL and pipeline problems, compare your reasoning with worked answers, and rehearse under a timer.</p>
+        <div class="actions"><a class="button primary" href="#practice">Explore questions</a><a class="button secondary" href="#mocks">Try a mock interview</a></div>
+      </div>
+      <aside class="example" aria-label="Sample interview question">
+        <div class="example-top"><span>QUESTION PREVIEW</span><span>SQL · INTERMEDIATE</span></div>
+        <pre aria-hidden="true"><span class="pink">SELECT</span> order_id, status,
+       <span class="mint">ROW_NUMBER</span>() <span class="pink">OVER</span> (
+         <span class="pink">PARTITION BY</span> order_id
+         <span class="pink">ORDER BY</span> event_ts <span class="pink">DESC</span>
+       ) <span class="pink">AS</span> version
+<span class="pink">FROM</span> order_events</pre>
+        <p><strong>What happens when timestamps tie?</strong> Explain how you’d make the result deterministic.</p>
+        <a href="#q=sql-latest">Open this question</a>
+      </aside>
+    </section>
+    <section class="summary" aria-label="Practice statistics">
+      <div><strong id="question-total">32</strong><span>Original questions</span></div>
+      <div><strong>8</strong><span>Topics</span></div>
+      <div><strong>3</strong><span>Timed mock rounds</span></div>
+      <div class="personal"><strong id="completed-total">0 / 32</strong><span>Practiced on this device</span><div class="meter" aria-hidden="true"><span id="completed-bar"></span></div></div>
+    </section>
+    <section class="section" id="practice" aria-labelledby="practice-title">
+      <div class="section-head"><div><p class="label">Practice</p><h2 id="practice-title">Question bank</h2></div><p>Find a problem, attempt it, then reveal the solution.</p></div>
+      <form class="filters" role="search" id="filters">
+        <label>Search <input id="search" type="search" placeholder="Try watermark, joins, or SCD"></label>
+        <label>Topic <select id="topic"><option value="">All topics</option></select></label>
+        <label>Difficulty <select id="difficulty"><option value="">All levels</option><option>Foundations</option><option>Intermediate</option><option>Advanced</option></select></label>
+        <label>Progress <select id="progress-filter"><option value="">All questions</option><option value="open">To practice</option><option value="done">Practiced</option></select></label>
+      </form>
+      <p class="count" id="results" aria-live="polite"></p>
+      <div class="question-list" id="questions"></div>
+      <button id="more" class="button secondary" type="button" hidden>Show more questions</button>
+      <noscript>Enable JavaScript to browse questions, take mock interviews, and track your progress.</noscript>
+    </section>
+    <section class="section" id="mocks" aria-labelledby="mocks-title">
+      <div class="section-head"><div><p class="label">Rehearse</p><h2 id="mocks-title">Mock interviews</h2></div><p>Work through three prompts in each round. Review your answers against a rubric.</p></div>
+      <div class="mock-grid" id="mock-list"></div>
+    </section>
+    <section class="section" id="roadmap" aria-labelledby="roadmap-title">
+      <div class="section-head"><div><p class="label">Study plan</p><h2 id="roadmap-title">Four-week roadmap</h2></div><p>Use each week to practice a skill and explain a trade-off aloud.</p></div>
+      <ol class="roadmap">
+        <li><span>Week 1</span><div><h3>Write and explain queries</h3><p>Practice joins, windows, and deterministic deduplication. End with the SQL &amp; Python round.</p></div><button class="button secondary topic-jump" data-topic="SQL">Practice SQL</button></li>
+        <li><span>Week 2</span><div><h3>Diagnose a slow Spark job</h3><p>Use execution plans and task metrics to distinguish skew, spill, and poor file layout.</p></div><button class="button secondary topic-jump" data-topic="Spark">Practice Spark</button></li>
+        <li><span>Week 3</span><div><h3>Build for replay and recovery</h3><p>Reason through checkpoints, late data, and idempotent writes. End with the Spark &amp; Databricks round.</p></div><button class="button secondary topic-jump" data-topic="Streaming">Practice streaming</button></li>
+        <li><span>Week 4</span><div><h3>Design and defend a pipeline</h3><p>State the grain, freshness target, failure modes, and backfill policy. Take the senior design mock.</p></div><button class="button secondary topic-jump" data-topic="System design">Practice system design</button></li>
+      </ol>
+    </section>
+  </main>
+  <footer class="shell site-footer"><span>Interview Lab · Free to use, no account required.</span><div><a href="https://github.com/ravula0612/data-engineering-interview-lab">Source on GitHub</a><a href="https://github.com/ravula0612/data-engineering-interview-lab/issues/new">Suggest a question</a></div></footer>
+  <dialog id="question-dialog" aria-labelledby="question-title">
+    <div class="dialog-inner">
+      <div class="dialog-top"><p id="question-meta" class="label"></p><button class="button quiet" id="close-question" type="button" autofocus>Close</button></div>
+      <h2 id="question-title"></h2>
+      <p id="question-prompt" class="prompt"></p>
+      <details class="solution" id="solution"><summary>Reveal worked answer</summary><div id="solution-body"></div></details>
+      <div class="actions"><button class="button primary" id="complete" type="button" aria-pressed="false">Mark as practiced</button><button class="button secondary" id="share-question" type="button">Share question</button></div>
+    </div>
+  </dialog>
+  <dialog id="mock-dialog" aria-labelledby="mock-title">
+    <div class="dialog-inner">
+      <div class="dialog-top"><p id="mock-status" class="label"></p><button class="button quiet" id="close-mock" type="button">Close</button></div>
+      <h2 id="mock-title"></h2>
+      <div id="mock-content"></div>
+      <div class="actions" id="mock-actions"></div>
+    </div>
+  </dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+</body>
+</html>
